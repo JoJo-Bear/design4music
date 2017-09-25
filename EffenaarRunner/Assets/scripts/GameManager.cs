@@ -4,7 +4,9 @@ using System.Collections;
 using System;
 public class GameManager : MonoBehaviour {
 
-    public Transform cube;
+    public Transform cubeB;
+    public Transform cubeR;
+    public Transform textNice;
     public Transform textGreat;
     public Transform textAmazing;
     public Transform textFantastic;
@@ -46,18 +48,18 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-
+        
     }
 
     public void spawnPoint()
     {
         double directionChoice = randomDirection.NextDouble() * (3.6 - 1.4) + 1.4; 
 
-        Instantiate(cube, new Vector3(11, (float)directionChoice, 0), Quaternion.identity);
+        Instantiate(cubeR, new Vector3(11, (float)directionChoice, 0), Quaternion.identity);
 
         
         double directionChoice2 = randomDirection.NextDouble() * (-1.4 - -3.6) + -3.6;
-        Instantiate(cube, new Vector3(11, (float)directionChoice2, 0), Quaternion.identity);
+        Instantiate(cubeB, new Vector3(11, (float)directionChoice2, 0), Quaternion.identity);
     }
 
 
@@ -67,7 +69,7 @@ public class GameManager : MonoBehaviour {
         scoretextPlayer1.text = "Score: " + scorePlayer1;
 
         //heigth is the y cordinate
-        ShowFeedbackText(scorePlayer1, 2);       
+        ShowFeedbackText(scorePlayer1, (float) 2.5);       
     }
 
     public void addScorePlayer2()
@@ -76,7 +78,7 @@ public class GameManager : MonoBehaviour {
         scoretextPlayer2.text = "Score: " + scorePlayer2;
 
         //heigth is the y cordinate
-        ShowFeedbackText(scorePlayer2, -2);
+        ShowFeedbackText(scorePlayer2, (float) -2.5);
     }
 
     public void JumpPlayer1(int allPlayers)
@@ -99,25 +101,28 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public void ShowFeedbackText(int score, int height)
+    public void ShowFeedbackText(int score, float height)
     {
         switch (score)
         {
+            case 50:
+                Instantiate(textNice, new Vector3(0, height, -1), Quaternion.identity);
+                break; //optional
             case 100:
-                Instantiate(textGreat, new Vector3(0, height, 0), Quaternion.identity);
+                Instantiate(textGreat, new Vector3(0, height, -1), Quaternion.identity);
                 break; //optional
             case 200:
-                Instantiate(textAmazing, new Vector3(0, height, 0), Quaternion.identity);
+                Instantiate(textAmazing, new Vector3(0, height, -1), Quaternion.identity);
                 break; //optional
-            case 300:
-                Instantiate(textFantastic, new Vector3(0, height, 0), Quaternion.identity);
-                break; //optional
-            case 400:
-                Instantiate(textOutstanding, new Vector3(0, height, 0), Quaternion.identity);
-                break; //optional
-            case 500:
-                Instantiate(textUnbelievable, new Vector3(0, height, 0), Quaternion.identity);
-                break; //optional
+//            case 300:
+//                Instantiate(textFantastic, new Vector3(0, height, -1), Quaternion.identity);
+//                break; //optional
+//            case 400:
+//                Instantiate(textOutstanding, new Vector3(0, height, -1), Quaternion.identity);
+//                break; //optional
+//           case 500:
+//                Instantiate(textUnbelievable, new Vector3(0, height, -1), Quaternion.identity);
+//                break; //optional
         }
     }
 }
